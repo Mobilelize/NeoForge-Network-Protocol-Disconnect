@@ -48,13 +48,12 @@ public class NetworkProtocolDisconnect {
     // Define mod id in a common place for everything to reference
     public static final String MODID = "netprodis";
     // Directly reference a slf4j logger
-    public static final Logger LOGGER = LogUtils.getLogger();
 
     public NetworkProtocolDisconnect(IEventBus modEventBus, ModContainer modContainer) {
         // 1) Register your spec so TOML is created/read
         modContainer.registerConfig(ModConfig.Type.CLIENT, new ModConfigSpec.Builder().build()); // 1.20.6 docs use ModContainer
         // 2) Register the config screen extension point (client only)
-        if (FMLEnvironment.dist.isClient()) {
+        if (FMLEnvironment.getDist().isClient()) {
             if (!ModList.get().isLoaded("cloth_config")) return;
             modContainer.registerExtensionPoint(
                     IConfigScreenFactory.class,
@@ -64,7 +63,7 @@ public class NetworkProtocolDisconnect {
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
-    @EventBusSubscriber(modid = NetworkProtocolDisconnect.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    @EventBusSubscriber(modid = NetworkProtocolDisconnect.MODID, value = Dist.CLIENT)
     static class ClientModEvents {
         @SubscribeEvent
         static void onClientSetup(FMLClientSetupEvent event) {

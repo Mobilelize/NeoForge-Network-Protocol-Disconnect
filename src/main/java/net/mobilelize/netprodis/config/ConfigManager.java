@@ -3,7 +3,7 @@ package net.mobilelize.netprodis.config;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import net.minecraft.client.Minecraft;
-import net.mobilelize.netprodis.NetworkProtocolDisconnect;
+import net.mobilelize.netprodis.NetprodisLogger;
 
 import java.io.File;
 import java.io.FileReader;
@@ -32,7 +32,7 @@ public class ConfigManager {
                 configData = GSON.fromJson(reader, ConfigData.class);
             }
         } catch (Exception e) {
-            NetworkProtocolDisconnect.LOGGER.error("Failed to load config: {}", e.getMessage());
+            NetprodisLogger.LOGGER.error("Failed to load config: {}", e.getMessage());
         }
     }
 
@@ -45,7 +45,7 @@ public class ConfigManager {
                 GSON.toJson(configData, writer);
             }
         } catch (Exception e) {
-            NetworkProtocolDisconnect.LOGGER.error("Failed to save config: {}", e.getMessage());
+            NetprodisLogger.LOGGER.error("Failed to save config: {}", e.getMessage());
         }
     }
 
