@@ -18,15 +18,15 @@ public class ConfigMenu {
 
         ConfigCategory global = builder.getOrCreateCategory(Component.literal("Global"));
 
-        global.addEntry(entryBuilder.startBooleanToggle(Component.literal("Stop Network Protocol Errors"), true)
+        global.addEntry(entryBuilder.startBooleanToggle(Component.literal("Stop Network Protocol Errors"), ConfigManager.configData.modEnabled)
                 .setDefaultValue(true)
                 .setTooltip(Component.literal("Enables the mod."))
                 .setSaveConsumer(newValue -> ConfigManager.configData.modEnabled = newValue)
                 .build());
 
-        global.addEntry(entryBuilder.startBooleanToggle(Component.literal("Output Logs"), true)
+        global.addEntry(entryBuilder.startBooleanToggle(Component.literal("Output Logs"), ConfigManager.configData.showLogs)
                 .setDefaultValue(true)
-                .setTooltip(Component.literal("Sets if it should log anything."))
+                .setTooltip(Component.literal("Sets if it should logs errors."))
                 .setSaveConsumer(newValue -> ConfigManager.configData.showLogs = newValue)
                 .build());
 
