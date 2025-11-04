@@ -2,6 +2,7 @@ package net.mobilelize.netprodis;
 
 import net.mobilelize.netprodis.config.ConfigManager;
 import net.mobilelize.netprodis.config.ConfigMenu;
+import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.common.ModConfigSpec;
@@ -54,6 +55,7 @@ public class NetworkProtocolDisconnect {
         modContainer.registerConfig(ModConfig.Type.CLIENT, new ModConfigSpec.Builder().build()); // 1.20.6 docs use ModContainer
         // 2) Register the config screen extension point (client only)
         if (FMLEnvironment.dist.isClient()) {
+            if (!ModList.get().isLoaded("cloth_config")) return;
             modContainer.registerExtensionPoint(
                     IConfigScreenFactory.class,
                     (Supplier<IConfigScreenFactory>) () -> (mc, parent) -> ConfigMenu.create(parent) // your Cloth screen factory
