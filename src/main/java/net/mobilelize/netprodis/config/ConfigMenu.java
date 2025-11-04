@@ -26,7 +26,7 @@ public class ConfigMenu {
 
         global.addEntry(entryBuilder.startBooleanToggle(Component.literal("Output Logs"), ConfigManager.configData.showLogs)
                 .setDefaultValue(true)
-                .setTooltip(Component.literal("Sets if it should logs errors."))
+                .setTooltip(Component.literal("Sets if it should log anything."))
                 .setSaveConsumer(newValue -> ConfigManager.configData.showLogs = newValue)
                 .build());
 
